@@ -828,48 +828,4 @@ Made with ❤️ by [Aayush Badola](https://github.com/AayushBadola)
 </div>
 
 
--   **Added C++ Equivalents:** Implemented `sort_array`, `find_string`, and `print_array` functions in C++.
--   `sort_array`: Uses Counting Sort for integer arrays (O(n+k)). Optimized for non-negative integers.
--   `find_string`: Linear search for C-style strings in a `char* const []` array.
--   `print_array`: Formatted printing for integer arrays.
--   Added checks for memory allocation failures and range issues in `sort_array`.
--   Added `<cstring>`, `<cmath>`, `<limits>`, `<cerrno>`, `<stdexcept>`, `<iostream>` dependencies explicitly for relevant functions.
 
-## 📝 License
-
-Atomix is based on MIT license and thus protected by said License.
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📞 Contact
-
-Aayush Badola
-
-<div align="center">
-  <a href="https://github.com/AayushBadola">
-    <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="GitHub"/>
-  </a>&nbsp;&nbsp;
-  <a href="https://www.linkedin.com/in/aayush-badola-0a7b2b343">
-    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/>
-  </a>&nbsp;&nbsp;
-  <a href="mailto:aayush.badola2@gmail.com">
-    <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"/>
-  </a>
-</div>
-
----
-
-<div align="center">
-
-Made with ❤️ by [Aayush Badola](https://github.com/AayushBadola)
-
-</div>
-```
