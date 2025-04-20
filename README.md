@@ -152,6 +152,17 @@ g++ your_program atomix.cpp -o your_program -std=c++11
 
 
 This will compile both your main file and the Atomix library file, link them, create an executable, and allow you to use the Atomix functions.
+<br>
+#### **BONUS**
+- To run the example file provided while cloning into Aqunt
+  **Compile Both the files**
+```bash
+g++ example.cpp atomix.cpp -o example -std=c++11
+```
+  **Run the example file**
+  ```bash
+./example
+```
 
 <div align="center">
 
