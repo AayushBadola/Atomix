@@ -11,9 +11,9 @@
 
 <br>
 
-<kbd><b><span style="color:#27ae60">Current Version 1.2.0</span></b></kbd>
+<kbd><b><span style="color:#27ae60">Current Version 1.1.0</span></b></kbd>
 <br>
-<kbd><b><span style="color:#27ae60">Previous Version 1.1.0</span></b></kbd>
+<kbd><b><span style="color:#27ae60">Previous Version 1.0.0</span></b></kbd>
 <br>
 
 ![Language](https://img.shields.io/badge/language-C++-blue.svg)
@@ -645,7 +645,7 @@ No external third-party libraries are required.
 
 
 
-### Version 1.2.0
+### Version 1.1.0
 
 *   **Added `std::vector` Support:** Introduced comprehensive functions for `std::vector<int>`, `float`, `double`, `std::string`.
 *   **Enhanced Sorting:** Switched C-style array sort to `std::sort`. Vector sort also uses `std::sort`.
