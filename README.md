@@ -3,7 +3,7 @@
 
 # Atomix
 
-### A Robust C++ Library for Handling User Input and Utilities
+### A Robust C++ Library for User Input, Array/Vector Operations, String Manipulation, and Utilities
 
 <br>
 
@@ -11,11 +11,12 @@
 
 <br>
 
-<kbd><b><span style="color:#27ae60">Current Version 1.0.0</span></b></kbd>
+<kbd><b><span style="color:#27ae60">Current Version 1.2.0</span></b></kbd>
+<br>
+<kbd><b><span style="color:#27ae60">Previous Version 1.1.0</span></b></kbd>
 <br>
 
-
-![Language](https://img.shields.io/badge/language-C%2B%2B-blue.svg)
+![Language](https://img.shields.io/badge/language-C++-blue.svg)
 ![Platform](https://img.shields.io/badge/platform-Cross--Platform-lightgrey.svg)
 ![License](https://img.shields.io/badge/license-MIT-orange.svg)
 ![Status](https://img.shields.io/badge/status-Active-brightgreen.svg)
@@ -40,275 +41,477 @@
 
 <div align="center">
 
-### "Streamline C++ Input & Array Operations"
+### "Modern C++ Input, Collections, Strings & More"
 
 </div>
 
 ## 📖 Overview
 
-Atomix is a lightweight yet powerful C++ library designed to simplify and standardize the process of obtaining user input using C++ streams, while also providing helpful array manipulation utilities. Developed with a focus on robustness and ease of use, Atomix handles common input scenarios, providing comprehensive error checking and validation that goes beyond basic stream operations.
+Atomix is a powerful and versatile C++ library designed to simplify common programming tasks. It offers robust user input handling using C++ streams, extensive utilities for manipulating both C-style arrays and `std::vector` collections (integers, floats, doubles, strings), a suite of string processing functions, and helpful tools like random number generation and timing.
 
-The library offers a collection of intuitive functions built on top of standard C++ features, promoting safer user interaction and simplifying common array tasks.
+Built with modern C++ practices in mind (leveraging the Standard Library where appropriate), Atomix provides intuitive functions, comprehensive error checking, and validation, aiming to make C++ development safer and more efficient. Its goal is to abstract away boilerplate code for routine tasks, allowing developers to focus on core application logic.
 
 <br>
 <div align="center">
 
 ```
-📋 Perfect for educational environments, command-line tools, and any C++ application
-requiring secure, validated user input and basic array analytics.
+📋 Ideal for educational settings, command-line tools, scientific computing,
+data processing tasks, game development utilities, and any C++ application
+needing reliable input, collection manipulation, string processing,
+and utility functions.
 ```
 
 </div>
 
 ## ✨ Features
 
+
+
 <table>
   <tr>
-    <td>✅ <b>Robust String Input</b></td>
-    <td>Reads entire lines safely using <code>std::string</code> and <code>std::getline</code></td>
+    <th colspan="2" align="center">Input Handling</th>
   </tr>
   <tr>
-    <td>✅ <b>Comprehensive Input Validation</b></td>
-    <td>Automatic type checking and error handling for all input functions using C++ exceptions and checks</td>
+    <td>✅ <b>Robust User Input</b></td>
+    <td>Safe line reading (`get_string`), validated single character (`get_char`), integer (`get_int`, `get_long`), float (`get_float`), and double (`get_double`) input with automatic retries and comprehensive error checking using C++ exceptions and stream states.</td>
   </tr>
   <tr>
-    <td>✅ <b>Type-Specific Input Functions</b></td>
-    <td>Specialized functions for <code>std::string</code>, <code>char</code>, <code>int</code>, <code>long</code>, <code>float</code>, and <code>double</code></td>
+    <td>✅ <b>Range-Validated Input</b></td>
+    <td>`get_int_range` ensures integer input falls within specified inclusive bounds.</td>
+  </tr>
+   <tr>
+    <td>✅ <b>Non-Empty Input</b></td>
+    <td>`get_string_non_empty` guarantees the user provides some text input, retrying if empty.</td>
+  </tr>
+   <tr>
+    <th colspan="2" align="center">Collection Utilities (C-Style Arrays & `std::vector`)</th>
   </tr>
   <tr>
-    <td>✅ <b>Intelligent Retry Mechanism</b></td>
-    <td>Automatic prompting for retries when invalid input is provided</td>
+    <td>✅ <b>Modern C++ Vector Support</b></td>
+    <td>Extensive, type-safe functions for `std::vector<int>`, `std::vector<float>`, `std::vector<double>`, and `std::vector<std::string>`.</td>
   </tr>
   <tr>
-    <td>✅ <b>Numeric Range Validation</b></td>
-    <td>Checks for overflow/underflow based on standard type limits</td>
+    <td>✅ <b>Comprehensive Analytics</b></td>
+    <td>Find maximum, minimum, sum, and average for integer arrays and vectors of int, float, double. Handles potential integer overflow and uses `double` for floating-point sums/averages.</td>
   </tr>
   <tr>
-    <td>✅ <b>Array Max/Min/Sum</b></td>
-    <td>Efficient functions to find maximum, minimum, and sum of integer arrays</td>
-  </tr>
-  <tr>
-    <td>✅ <b>Array Pair Checks (Sum, Product, Difference)</b></td>
-    <td>Optimized O(n) average time functions to find pairs meeting specific criteria using hash tables</td>
+    <td>✅ <b>Search & Counting</b></td>
+    <td>Check for element existence (`contains`), find the first index (`index_of`), and count occurrences for all supported array/vector types. Uses epsilon tolerance for float/double comparisons.</td>
   </tr>
     <tr>
-    <td>✅ <b>Array Sorting (Counting Sort)</b></td>
-    <td>Efficient O(n+k) sort for integer arrays (optimized for non-negative)</td>
+    <td>✅ <b>Efficient Sorting</b></td>
+    <td>Uses `std::sort` internally for efficient (typically O(n log n)) and general-purpose sorting of integer, float, double, and string arrays/vectors.</td>
+  </tr>
+  <tr>
+    <td>✅ <b>Modification Operations</b></td>
+    <td>In-place reversal (`reverse`) and shuffling (`shuffle`) using standard algorithms and `<random>`.</td>
+  </tr>
+   <tr>
+    <td>✅ <b>Copying & Concatenation</b></td>
+    <td>Create deep copies or concatenate arrays/vectors into new collections. Manages memory appropriately (heap allocation for C-style arrays, RAII for vectors).</td>
+  </tr>
+  <tr>
+    <td>✅ <b>Integer Array Pair Checks</b></td>
+    <td>Optimized O(n) average time functions (`array_has_pair_sum`, `product`, `difference`) for C-style integer arrays using an internal hash table. Handles duplicates and edge cases.</td>
+  </tr>
+   <tr>
+    <td>✅ <b>Unique Elements</b></td>
+    <td>Function `array_unique_int` to create a new array containing only the unique elements from a C-style integer array.</td>
   </tr>
     <tr>
-    <td>✅ <b>String Array Search</b></td>
-    <td>Locate strings within an array of C-style strings</td>
+    <td>✅ <b>Formatted Printing</b></td>
+    <td>Utility functions to print the contents of arrays and vectors in a readable `[elem1, elem2, ...]` format. Handles `nullptr` for C-style arrays.</td>
   </tr>
-    <tr>
-    <td>✅ <b>Array Printing</b></td>
-    <td>Formatted output for integer arrays</td>
+   <tr>
+    <th colspan="2" align="center">String Manipulation</th>
+  </tr>
+   <tr>
+    <td>✅ <b>Extensive String Utilities</b></td>
+    <td>Trim whitespace, split strings by delimiter, join vector elements into a string, perform case conversions (`to_lower`, `to_upper`), check properties (`is_int`, `is_alpha`, etc.), extract substrings, find characters/substrings, replace characters, check prefix/suffix, compare equality. Operates on `std::string`.</td>
+  </tr>
+   <tr>
+    <td>✅ <b>Safe Type Conversion</b></td>
+    <td>Reliable functions (`string_to_float`, `string_to_double`) to convert `std::string` to numeric types, returning success status and handling errors gracefully.</td>
+  </tr>
+   <tr>
+    <th colspan="2" align="center">General Utilities</th>
+  </tr>
+  <tr>
+    <td>✅ <b>Random Number Generation</b></td>
+    <td>Easy generation of cryptographically-seeded pseudo-random integers, floats, and doubles within specified ranges using `<random>`. Automatic seeding on first use.</td>
+  </tr>
+   <tr>
+    <td>✅ <b>Timer Utilities</b></td>
+    <td>Simple functions (`start_timer`, `stop_timer`) to measure execution time using `<chrono>` high-resolution clock. Returns duration in seconds.</td>
+  </tr>
+   <tr>
+    <td>✅ <b>Memory Management Helpers</b></td>
+    <td>Optional functions (`free_string`, `free_string_array`) to aid in freeing memory allocated by C-style string functions if needed.</td>
+  </tr>
+   <tr>
+    <th colspan="2" align="center">Design & Compatibility</th>
   </tr>
   <tr>
     <td>✅ <b>Clean C++ API Design</b></td>
-    <td>Consistent function signatures and behavior across the library</td>
+    <td>Consistent function signatures and behavior, leveraging standard C++ types like `std::string`, `std::vector`, `size_t`, and standard exceptions. Clear separation between C-style array and `std::vector` functions.</td>
   </tr>
   <tr>
     <td>✅ <b>Minimal Dependencies</b></td>
-    <td>Uses only standard C++ and C standard libraries</td>
+    <td>Relies solely on the C++11 Standard Library. No external libraries required.</td>
   </tr>
   <tr>
     <td>✅ <b>Cross-Platform Compatibility</b></td>
-    <td>Works on any system with a standard C++ compiler</td>
+    <td>Designed to work on any system with a standard C++ compiler supporting C++11 or later (e.g., GCC, Clang, MSVC).</td>
   </tr>
 </table>
 
 ## 🚀 Installation
 
-The simplest way to use Atomix in your project is to include the source files directly:
-
-1. Download both `atomix.cpp` and `atomix.h` (assuming you have one) from this repository, or clone the repository:
-
-```bash
-git clone https://github.com/AayushBadola/Atomix.git
-```
-
-```bash
-cd Atomix
-```
-
-2. Place `atomix.cpp` and `atomix.h` in your project directory.
-3. Include the header in your source files that need to use Atomix functions:
-
-```c++
-#include "atomix.h"
-```
-
-4. Compile your program with both files. For example, if your main program is `your_program.cpp`:
-
-```bash
-g++ your_program atomix.cpp -o your_program -std=c++11
-```
-
-5. Run your program:
-
-```bash
-./your_program
-```
 
 
-This will compile both your main file and the Atomix library file, link them, create an executable, and allow you to use the Atomix functions.
-<br>
+1.  Download both `atomix.cpp` and `atomix.h` from the repository. Alternatively, clone the repository:
+
+    ```bash
+    git clone https://github.com/AayushBadola/Atomix.git
+    ```
+    ```
+    cd Atomix
+    ```
+
+2.  Place `atomix.cpp` and `atomix.h` into your project's source directory.
+3.  Include the Atomix header file in your C++ source files where you need its functionality:
+
+    ```c++
+    #include "atomix.h"
+    ```
+
+4.  Compile your program, making sure to include both your source file(s) and `atomix.cpp`. Use the `-std=c++11` flag (or a later standard like `-std=c++14`, `-std=c++17`, `-std=c++20`) to ensure compatibility.
+
+    **Example using g++:**
+    ```bash
+    g++ your_program.cpp atomix.cpp -o your_program -std=c++11
+    ```
+
+5.  Run your compiled executable:
+
+    ```bash
+    ./your_program
+    ```
+
 #### **BONUS**
-- To run the example file provided while cloning into Aqunt
-  **Compile Both the files**
-```bash
-g++ example.cpp atomix.cpp -o example -std=c++11
-```
-  **Run the example file**
-  ```bash
-./example
-```
+
+*   To compile and run the provided `test.cpp` file
+    ```bash
+    g++ test.cpp atomix.cpp -o test -std=c++11
+    ```
+    ```
+    ./test
+    ```
 
 <div align="center">
 
-## 💡 Usage Examples
+## 💡 Usage Examples (Function-Specific Snippets)
 
 </div>
 
-### Basic String Input
+This section provides minimal code snippets demonstrating the usage of specific Atomix functions. Assume necessary headers like `<iostream>`, `<vector>`, `<string>`, and `"atomix.h"` are included.
 
-The `get_string` function provides a safe way to read text input of any length into a `std::string`:
+---
+### Input Handling Functions
 
 ```c++
-#include <iostream>
+// Get a line of text
+std::string user_name = get_string("Enter name: ");
+std::cout << "Read: " << user_name << std::endl;
+
+// Get a single character
+char choice = get_char("Enter choice (Y/N): ");
+std::cout << "Choice: " << choice << std::endl;
+
+// Get an integer
+int items = get_int("Number of items: ");
+std::cout << "Items: " << items << std::endl;
+
+// Get a long integer
+long record_id = get_long("Enter Record ID: ");
+std::cout << "ID: " << record_id << std::endl;
+
+// Get a float
+float temp = get_float("Temperature: ");
+std::cout << "Temp: " << temp << std::endl;
+
+// Get a double
+double pressure = get_double("Pressure (kPa): ");
+std::cout << "Pressure: " << pressure << std::endl;
+
+// Get an integer within a specific range [1-10]
+int rating = get_int_range("Rating (1-10): ", 1, 10);
+std::cout << "Rating: " << rating << std::endl;
+
+// Get a string that cannot be empty
+std::string feedback = get_string_non_empty("Feedback (required): ");
+std::cout << "Feedback given: " << feedback << std::endl;
+```
+
+---
+### Integer Array Utilities (`int[]`)
+
+```c++
+// Setup for examples
+int data[] = {3, 1, 4, 1, 5, 9, 2, 6};
+size_t data_size = sizeof(data) / sizeof(data[0]);
+
+// Get Max/Min value
+int max_v, min_v;
+if (array_max(data, data_size, &max_v)) { /* max_v = 9 */ }
+if (array_min(data, data_size, &min_v)) { /* min_v = 1 */ }
+
+// Calculate Sum
+long long sum_v;
+if (array_sum(data, data_size, &sum_v)) { /* sum_v = 31 */ }
+
+// Calculate Average
+double avg_v;
+if (array_average(data, data_size, &avg_v)) { /* avg_v = 3.875 */ }
+
+// Check if contains value 5
+bool has_5 = array_contains_int(data, data_size, 5); // true
+
+// Find index of first occurrence of 1
+int index_1 = array_index_of_int(data, data_size, 1); // 1
+
+// Count occurrences of 1
+size_t count_1 = array_count_occurrence(data, data_size, 1); // 2
+
+// Sort the array in-place
+sort_array(data, data_size); // data is now {1, 1, 2, 3, 4, 5, 6, 9}
+
+// Reverse the array in-place
+array_reverse_int(data, data_size); // data is now {9, 6, 5, 4, 3, 2, 1, 1}
+
+// Shuffle the array in-place
+array_shuffle_int(data, data_size); // data is now in random order
+
+// Print array contents
+print_array(data, data_size); // e.g., [random_order...]
+
+// Check if a pair sums to 7 (e.g., 1+6, 2+5, 3+4)
+bool pair_sum_7 = array_has_pair_sum(data, data_size, 7); // true
+
+// Check if a pair has product 12 (e.g., 3*4)
+bool pair_prod_12 = array_has_pair_product(data, data_size, 12); // true
+
+// Check if a pair has difference 2 (e.g., 3-1, 4-2, 6-4)
+bool pair_diff_2 = array_has_pair_difference(data, data_size, 2); // true
+
+// Create a heap-allocated copy
+#include <cstdlib> // Required for delete[]
+int* data_copy = array_copy_int(data, data_size);
+if (data_copy) {
+    // ... use data_copy ...
+    delete[] data_copy; // IMPORTANT: Cleanup
+}
+
+// Get unique elements into a new heap-allocated array
+size_t unique_count;
+int* unique_data = array_unique_int(data, data_size, &unique_count);
+if (unique_data) {
+    // ... use unique_data (sorted: {1, 2, 3, 4, 5, 6, 9}) ...
+    delete[] unique_data; // IMPORTANT: Cleanup
+}
+
+// Concatenate two arrays into a new heap-allocated array
+int data2[] = {10, 11}; size_t data2_size = 2;
+size_t concat_count;
+int* combined_data = array_concat_int(data, data_size, data2, data2_size, &concat_count);
+if (combined_data) {
+    // ... use combined_data ...
+    delete[] combined_data; // IMPORTANT: Cleanup
+}
+```
+
+---
+### Vector Utilities (`std::vector<T>`)
+
+
+```c++
+#include <vector>
+#include <limits> // For epsilon example
+
+// Setup for examples
+std::vector<float> values = {3.1f, 1.5f, 4.1f, 1.5f, 5.9f};
+float epsilon = std::numeric_limits<float>::epsilon() * 100;
+
+// Get Max/Min value
+float max_f, min_f;
+if (array_max_float(values, &max_f)) { /* max_f = 5.9f */ }
+if (array_min_float(values, &min_f)) { /* min_f = 1.5f */ }
+
+// Calculate Sum
+double sum_f;
+if (array_sum_float(values, &sum_f)) { /* sum_f approx 16.1f */ }
+
+// Calculate Average
+double avg_f;
+if (array_average_float(values, &avg_f)) { /* avg_f approx 3.22f */ }
+
+// Check if contains value 4.1f (using epsilon)
+bool has_4_1 = array_contains_float(values, 4.1f, epsilon); // true
+
+// Find index of first occurrence of 1.5f (using epsilon)
+long long index_1_5 = array_index_of_float(values, 1.5f, epsilon); // 1
+
+// Count occurrences of 1.5f (using epsilon)
+size_t count_1_5 = array_count_occurrence_float(values, 1.5f, epsilon); // 2
+
+// Sort the vector in-place
+array_sort_float(values); // values is now {1.5f, 1.5f, 3.1f, 4.1f, 5.9f}
+
+// Reverse the vector in-place
+array_reverse_float(values); // values is now {5.9f, 4.1f, 3.1f, 1.5f, 1.5f}
+
+// Shuffle the vector in-place
+array_shuffle_float(values); // values is now in random order
+
+// Print vector contents
+array_print_float(values); // e.g., [random_order...]
+
+// Create a copy (vector handles memory)
+std::vector<float> values_copy = array_copy_float(values);
+
+// Concatenate two vectors (vector handles memory)
+std::vector<float> values2 = {10.0f, 11.0f};
+std::vector<float> combined_values = array_concat_float(values, values2);
+
+// Helper for close-enough comparison (used internally by above functions)
+bool close = floats_are_close(0.1f + 0.2f, 0.3f, epsilon); // Likely true
+```
+
+---
+### String Array Utilities (`char*[]`)
+
+```c++
+#include <cstring> // For strcmp used internally
+
+// Note: Requires const_cast if source array is defined as const char* []
+const char* items_const[] = {"Pen", "Pencil", "Eraser"};
+char* const* items_ptr = const_cast<char* const*>(items_const);
+size_t items_size = 3;
+
+// Find index of "Pencil"
+int idx = find_string(items_ptr, items_size, "Pencil"); // 1
+```
+
+---
+### String Manipulation (`std::string`)
+
+```c++
 #include <string>
-#include "atomix.h"
+#include <vector>
 
-int main() {
-    std::string name = get_string("Enter your name: ");
-    if (!name.empty() || !std::cin.eof()) {
-        std::cout << "Hello, " << name << "!\n";
-    } else {
-        std::cerr << "Error reading input or EOF encountered.\n";
-        return 1;
-    }
-    return 0;
-}
+// Setup for examples
+std::string text = "  Atomix Library!  ";
+std::string numbers = "1,2,3";
+
+// Copy and Compare
+std::string text_copy = string_copy(text);
+bool equal = string_equals(text, text_copy); // true
+
+// Trim whitespace
+std::string trimmed = string_trim(text); // "Atomix Library!"
+
+// Check Type/Content
+bool is_int_check = string_is_int(" -42 "); // true
+bool is_alpha_check = string_is_alpha("Atomix"); // true
+bool is_digit_check = string_is_digit("123"); // true
+bool is_alnum_check = string_is_alnum("Atomix123"); // true
+bool is_space_check = string_is_space(" \t "); // true
+bool is_empty_check = string_is_empty(""); // true
+
+// Change Case
+std::string lower_case = string_to_lower("MixedCase"); // "mixedcase"
+std::string upper_case = string_to_upper("MixedCase"); // "MIXEDCASE"
+
+// Get Substring (index 7, length 7)
+std::string sub = string_substring(trimmed, 7, 7); // "Library"
+
+// Find Character/Substring
+long long idx_L = string_find_char(trimmed, 'L'); // 7
+long long idx_Lib = string_find_substring(trimmed, "Lib"); // 7
+
+// Replace Character '!' with '?'
+std::string replaced = string_replace_char(trimmed, '!', '?'); // "Atomix Library?"
+
+// Split string by comma
+std::vector<std::string> parts = string_split(numbers, ','); // {"1", "2", "3"}
+
+// Join vector elements with "-"
+std::string joined = string_join(parts, "-"); // "1-2-3"
+
+// Check Prefix/Suffix
+bool starts_with_Ato = string_starts_with(trimmed, "Ato"); // true
+bool ends_with_ry_q = string_ends_with(replaced, "ry?"); // true
+
+// Concatenate Strings
+std::string s1 = "Hello";
+std::string s2 = " World";
+std::string combined = string_concat(s1, s2); // "Hello World"
+
+// Convert String to Float/Double
+float f_val;
+double d_val;
+bool ok_f = string_to_float(" 3.14 ", &f_val); // true, f_val = 3.14f
+bool ok_d = string_to_double(" -1.6e-19 ", &d_val); // true, d_val approx -1.6e-19
 ```
 
-### Reading and Validating Numbers
-
-Atomix handles the parsing and validation of numeric input automatically:
+---
+### Memory Management Helpers
 
 ```c++
-#include <iostream>
-#include "atomix.h"
+#include <cstdlib> // For malloc/free/strdup used in example scenario
+#include <cstring> // For strdup
 
-int main() {
-    int age = get_int("Enter your age: ");
-    std::cout << "You are " << age << " years old.\n";
-
-    float price = get_float("Enter the price: $");
-    std::cout << "The price is $" << price << "\n";
-
-    long population = get_long("Enter world population: ");
-    std::cout << "World population is " << population << "\n";
-
-    double pi_value = get_double("Enter the value of pi: ");
-    std::cout.precision(10);
-    std::cout << "Pi is approximately " << pi_value << "\n";
-
-    return 0;
+// Scenario: You receive a C-string from a function that used malloc/strdup
+char* c_string = strdup("Allocated C String");
+if (c_string) {
+    // ... use c_string ...
+    free_string(c_string); // Use helper to free it
 }
+
+// Scenario: You receive a C-string array where array and strings used malloc
+char** c_array = (char**)malloc(2 * sizeof(char*));
+if(c_array) {
+    c_array[0] = strdup("First");
+    c_array[1] = strdup("Second");
+    if(c_array[0] && c_array[1]) {
+       // ... use c_array ...
+       free_string_array(c_array, 2); // Use helper to free strings and array
+    } else { /* handle partial allocation */ free(c_array); }
+}
+
+// Note: Use delete[] for arrays returned by Atomix's array_copy_int etc.
 ```
 
-### User Confirmation
-
-Getting a single character input for confirmation prompts:
+---
+### Utility Functions
 
 ```c++
-#include <iostream>
-#include "atomix.h"
+#include <chrono> // For time_point
 
-int main() {
-    std::cout << "This will delete all files. Are you sure?\n";
-    char answer = get_char("Continue? (y/n): ");
+// Initialize random generator (optional, happens automatically on first use)
+// initialize_random();
 
-    if (answer == 'y' || answer == 'Y') {
-        std::cout << "Proceeding with deletion...\n";
-    } else {
-        std::cout << "Operation cancelled.\n";
-    }
+// Get random numbers
+int random_int = get_random_int(1, 6); // Random integer between 1 and 6
+float random_float = get_random_float(0.0f, 1.0f); // Random float between 0.0 and 1.0
+double random_double = get_random_double(-10.0, 10.0); // Random double between -10.0 and 10.0
 
-    return 0;
-}
+// Time an operation
+auto t_start = start_timer();
+// ... code to measure ...
+double duration_sec = stop_timer(t_start);
+std::cout << "Operation took " << duration_sec << " seconds.\n";
 ```
-
-### Using Array Utilities
-
-Examples for the array utility functions:
-
-```c++
-#include <iostream>
-#include "atomix.h"
-
-int main() {
-    int nums[] = {5, -2, 10, 8, 2, 7, 15, 7};
-    size_t size = sizeof(nums) / sizeof(nums[0]);
-
-    std::cout << "Array: ";
-    print_array(nums, size);
-
-    int max_val;
-    if (array_max(nums, size, &max_val)) {
-        std::cout << "Max value: " << max_val << "\n";
-    }
-
-    int min_val;
-    if (array_min(nums, size, &min_val)) {
-        std::cout << "Min value: " << min_val << "\n";
-    }
-
-    long long sum_val;
-     if (array_sum(nums, size, &sum_val)) {
-        std::cout << "Sum: " << sum_val << "\n";
-    }
-
-    bool found_9 = array_has_pair_sum(nums, size, 9);
-    bool found_14 = array_has_pair_sum(nums, size, 14);
-    std::cout << "Pair summing to 9 found: " << (found_9 ? "true" : "false") << "\n";
-    std::cout << "Pair summing to 14 found: " << (found_14 ? "true" : "false") << "\n";
-
-    bool found_neg_10 = array_has_pair_product(nums, size, -10);
-    bool found_49 = array_has_pair_product(nums, size, 49);
-    std::cout << "Pair with product -10 found: " << (found_neg_10 ? "true" : "false") << "\n";
-    std::cout << "Pair with product 49 found: " << (found_49 ? "true" : "false") << "\n";
-
-    bool found_3 = array_has_pair_difference(nums, size, 3);
-    bool found_neg_5 = array_has_pair_difference(nums, size, -5);
-    bool found_0 = array_has_pair_difference(nums, size, 0);
-    std::cout << "Pair with difference 3 found: " << (found_3 ? "true" : "false") << "\n";
-    std::cout << "Pair with difference -5 found: " << (found_neg_5 ? "true" : "false") << "\n";
-    std::cout << "Pair with difference 0 found: " << (found_0 ? "true" : "false") << "\n";
-
-    int positive_nums[] = {5, 2, 8, 2, 1, 9, 4, 0};
-    size_t pos_size = sizeof(positive_nums) / sizeof(positive_nums[0]);
-    std::cout << "Before sort: "; print_array(positive_nums, pos_size);
-    sort_array(positive_nums, pos_size);
-    std::cout << "After sort:  "; print_array(positive_nums, pos_size);
-
-    char* items[] = {"Apple", "Banana", "Cherry", "Apple", nullptr};
-    size_t items_size = 5;
-    std::cout << "String items array size: " << items_size << std::endl;
-
-
-    const char* search_items[] = {"Apple", "Banana", "Cherry", "Apple"};
-    size_t search_items_size = 4;
-    int index = find_string(const_cast<char* const*>(search_items), search_items_size, "Apple");
-    std::cout << "First 'Apple' found at index: " << index << "\n";
-
-    index = find_string(const_cast<char* const*>(search_items), search_items_size, "Durian");
-    std::cout << "'Durian' found at index: " << index << "\n";
-
-    return 0;
-}
-```
-*Note on `find_string` example: The function signature `char * const arr_of_strings[]` is slightly unusual, typically it would be `const char* const arr_of_strings[]`. The example uses `const char*[]` which is more common, and requires a `const_cast` to match the function's parameter type. If you can change the library function signature to `const char* const arr_of_strings[]`, it would be more idiomatic C++ and the cast wouldn't be needed.*
 
 <div align="center">
 
@@ -316,398 +519,58 @@ int main() {
 
 </div>
 
-### Input Handling
 
-#### `std::string get_string(const char *prompt)`
 
-Reads a line of text from standard input into a `std::string`.
+---
+### Input Handling Functions
+**`std::string get_string(const char *prompt)`**
+*   **Description:** Reads an entire line of text from standard input.
+*   **Parameters:** `prompt`: (Optional) C-string to display before reading input.
+*   **Returns:** `std::string` containing the input line. Empty string on EOF/error.
+*(... and so on for all other input functions: get_char, get_int, get_long, get_float, get_double, get_int_range, get_string_non_empty ...)*
 
--   **Parameters**:
-    -   `prompt`: Text to display before reading input (can be `nullptr`).
--   **Returns**:
-    -   A `std::string` containing the input line.
-    -   An empty `std::string` if EOF is encountered immediately or a stream failure occurs.
--   **Behavior**:
-    -   Uses `std::getline` for safe line reading.
-    -   Handles potential stream errors (`std::cin.eof()`, `std::cin.fail()`).
-    -   Flushes `std::cout` before reading if a prompt is provided.
--   **Dependencies**: `<iostream>`, `<string>`
--   **Example**:
-    ```c++
-    std::string input = get_string("Enter text: ");
-    if (!input.empty() || !std::cin.eof()) {
-        std::cout << "Read: " << input << "\n";
-    } else {
-         std::cerr << "Input error or EOF.\n";
-    }
-    ```
+---
+### Integer Array Utilities (`int[]`)
+**`bool array_max(const int *arr, size_t size, int *max_val)`**
+*   **Description:** Finds the maximum value in the array.
+*   **Parameters:** `arr`, `size`, `max_val` (output pointer).
+*   **Returns:** `true` on success, `false` otherwise.
+*(... and so on for all other int[] functions: array_min, array_sum, array_average, array_contains_int, array_index_of_int, array_count_occurrence, sort_array, array_reverse_int, array_shuffle_int, print_array, array_has_pair_sum, array_has_pair_product, array_has_pair_difference, array_copy_int, array_unique_int, array_concat_int ...)*
 
-#### `char get_char(const char *prompt)`
+---
+### Vector Utilities (`std::vector`)
+*(Summarize group and mention specific names like `array_max_float`, `array_sort_string`, etc., referring to `atomix.h`)*
+**Analytics (`array_max_<type>`, `array_min_<type>`, `array_sum_<type>`, `array_average_<type>`)**
+*   **Description:** Calculate max, min, sum, and average of vector elements.
+*(... and so on for other vector function groups: Search & Counting, Modification, Copying & Concatenation, Printing, Float/Double Helpers ...)*
 
-Reads a single character from standard input with validation.
+---
+### String Array Utilities (`char*[]`)
+**`int find_string(char * const arr_of_strings[], size_t size, const char *target_string)`**
+*   **Description:** Finds the index of the first occurrence of a specific C-style string.
+*   **Parameters:** `arr_of_strings`, `size`, `target_string`.
+*   **Returns:** Index or `-1`.
 
--   **Parameters**:
-    -   `prompt`: Text to display before reading input (can be `nullptr`).
--   **Returns**:
-    -   A single `char` entered by the user.
-    -   `'\0'` if a fundamental input error or EOF occurs that prevents reading.
--   **Behavior**:
-    -   Uses `get_string` internally to read a line.
-    -   Validates that the entered line contains exactly one non-newline character.
-    -   Automatically prompts for retry ("Retry: ") if input is invalid or empty (unless EOF/fail).
--   **Dependencies**: `<iostream>`, `<string>`, `<cctype>`
--   **Example**:
-    ```c++
-    char key = get_char("Press a key: ");
-    std::cout << "You pressed: " << key << "\n";
-    ```
 
-#### `int get_int(const char *prompt)`
+---
+### String Manipulation (`std::string`)
+**Basic Ops & Checks**
+*   `std::string string_copy(const std::string& str)`
+*   `bool string_equals(const std::string& str1, const std::string& str2)`
 
-Reads an integer from standard input with validation.
 
--   **Parameters**:
-    -   `prompt`: Text to display before reading input (can be `nullptr`).
--   **Returns**:
-    -   A valid `int` value entered by the user.
-    -   `0` if a fundamental input error or EOF occurs that prevents reading (check `std::cin` state if `0` is a valid input).
--   **Behavior**:
-    -   Uses `get_string` internally to read a line.
-    -   Uses `std::stol` for parsing, providing robust error detection.
-    -   Checks for leading/trailing whitespace.
-    -   Ensures no non-whitespace trailing characters exist after the number.
-    -   Checks for overflow/underflow against `std::numeric_limits<int>::min()` and `max()`.
-    -   Automatically prompts for retry ("Retry: ") on invalid format, range errors, or trailing characters.
--   **Dependencies**: `<iostream>`, `<string>`, `<stdexcept>`, `<limits>`, `<cctype>`
--   **Example**:
-    ```c++
-    int count = get_int("Enter quantity: ");
-    std::cout << "Quantity: " << count << "\n";
-    ```
+---
+### Memory Management Helpers
+**`void free_string(char* str)`**
+*   **Description:** Frees a single C-style string allocated with `malloc`/`strdup`.
 
-#### `long get_long(const char *prompt)`
 
-Reads a long integer from standard input with validation.
+---
+### Utility Functions
+**`void initialize_random()`**
+*   **Description:** Initializes the global random number generator.
 
--   **Parameters**:
-    -   `prompt`: Text to display before reading input (can be `nullptr`).
--   **Returns**:
-    -   A valid `long` value entered by the user.
-    -   `0L` if a fundamental input error or EOF occurs.
--   **Behavior**:
-    -   Uses `get_string` internally.
-    -   Uses `std::stol` for parsing.
-    -   Checks for leading/trailing whitespace and non-whitespace trailing characters.
-    -   Checks for overflow/underflow against `std::numeric_limits<long>::min()` and `max()`.
-    -   Automatically prompts for retry.
--   **Dependencies**: `<iostream>`, `<string>`, `<stdexcept>`, `<limits>`, `<cctype>`
--   **Example**:
-    ```c++
-    long id = get_long("Enter ID: ");
-    std::cout << "ID: " << id << "\n";
-    ```
-
-#### `float get_float(const char *prompt)`
-
-Reads a floating-point number from standard input with validation.
-
--   **Parameters**:
-    -   `prompt`: Text to display before reading input (can be `nullptr`).
--   **Returns**:
-    -   A valid `float` value entered by the user.
-    -   `0.0f` if a fundamental input error or EOF occurs.
--   **Behavior**:
-    -   Uses `get_string` internally.
-    -   Uses `std::stof` for parsing.
-    -   Checks for leading/trailing whitespace and non-whitespace trailing characters.
-    -   Checks for overflow/underflow against `float` limits via `std::out_of_range`.
-    -   Automatically prompts for retry.
--   **Dependencies**: `<iostream>`, `<string>`, `<stdexcept>`, `<cctype>`
--   **Example**:
-    ```c++
-    float temperature = get_float("Enter temp: ");
-    std::cout << "Temperature: " << temperature << "\n";
-    ```
-
-#### `double get_double(const char *prompt)`
-
-Reads a double-precision floating-point number from standard input with validation.
-
--   **Parameters**:
-    -   `prompt`: Text to display before reading input (can be `nullptr`).
--   **Returns**:
-    -   A valid `double` value entered by the user.
-    -   `0.0` if a fundamental input error or EOF occurs.
--   **Behavior**:
-    -   Uses `get_string` internally.
-    -   Uses `std::stod` for parsing.
-    -   Checks for leading/trailing whitespace and non-whitespace trailing characters.
-    -   Checks for overflow/underflow against `double` limits via `std::out_of_range`.
-    -   Automatically prompts for retry.
--   **Dependencies**: `<iostream>`, `<string>`, `<stdexcept>`, `<cctype>`
--   **Example**:
-    ```c++
-    double value = get_double("Enter value: ");
-    std::cout << "Value: " << value << "\n";
-    ```
-
-### Array Utility Functions
-
-These functions operate on integer arrays (`int[]`) unless otherwise specified.
-
-#### `bool array_max(const int *arr, size_t size, int *max_val)`
-
-Finds the maximum value in an integer array.
-
--   **Parameters**:
-    -   `arr`: `const int*` - Pointer to the integer array.
-    -   `size`: `size_t` - Number of elements in the array.
-    -   `max_val`: `int*` - Pointer to an `int` variable where the maximum value will be stored if found.
--   **Returns**:
-    -   `bool`: `true` if the maximum value was found (input valid: `arr` not `nullptr`, `size > 0`, `max_val` not `nullptr`).
-    -   `bool`: `false` otherwise.
--   **Behavior**:
-    -   Iterates through the array to find the largest element.
-    -   If successful, stores the maximum value found in the variable pointed to by `max_val`.
--   **Dependencies**: `<cstddef>`, `<stdbool.h>`
--   **Example**:
-    ```c++
-    int nums[] = {5, -2, 10, 8};
-    int max_result;
-    if (array_max(nums, 4, &max_result)) {
-        std::cout << "Max: " << max_result << "\n";
-    } else {
-        std::cerr << "Could not find maximum.\n";
-    }
-    ```
-
-#### `bool array_min(const int *arr, size_t size, int *min_val)`
-
-Finds the minimum value in an integer array.
-
--   **Parameters**:
-    -   `arr`: `const int*` - Pointer to the integer array.
-    -   `size`: `size_t` - Number of elements in the array.
-    -   `min_val`: `int*` - Pointer to an `int` variable where the minimum value will be stored if found.
--   **Returns**:
-    -   `bool`: `true` if the minimum value was found (input valid: `arr` not `nullptr`, `size > 0`, `min_val` not `nullptr`).
-    -   `bool`: `false` otherwise.
--   **Behavior**:
-    -   Iterates through the array to find the smallest element.
-    -   If successful, stores the minimum value found in the variable pointed to by `min_val`.
--   **Dependencies**: `<cstddef>`, `<stdbool.h>`
--   **Example**:
-    ```c++
-    int nums[] = {5, -2, 10, 8};
-    int min_result;
-    if (array_min(nums, 4, &min_result)) {
-        std::cout << "Min: " << min_result << "\n";
-    } else {
-        std::cerr << "Could not find minimum.\n";
-    }
-    ```
-
-#### `bool array_sum(const int *arr, size_t size, long long *sum)`
-
-Calculates the sum of all elements in an integer array.
-
--   **Parameters**:
-    -   `arr`: `const int*` - Pointer to the integer array.
-    -   `size`: `size_t` - Number of elements in the array.
-    -   `sum`: `long long*` - Pointer to a `long long` variable where the sum will be stored.
--   **Returns**:
-    -   `bool`: `true` if the sum was calculated successfully (includes sum = 0 for size 0 or `nullptr` array).
-    -   `bool`: `false` if the output pointer `sum` is `nullptr` or if potential overflow during summation was detected and prevented.
--   **Behavior**:
-    -   Iterates through the array, adding each element to a `long long` accumulator to reduce overflow risk.
-    -   Checks for potential overflow before adding each element.
-    -   If successful, stores the final sum in the variable pointed to by `sum`.
-    -   Returns `true` for size 0, setting sum to 0.
--   **Dependencies**: `<cstddef>`, `<limits>`, `<stdbool.h>`, `<iostream>`
--   **Example**:
-    ```c++
-    int nums[] = {5, -2, 10, 8};
-    long long sum_result;
-    if (array_sum(nums, 4, &sum_result)) {
-        std::cout << "Sum: " << sum_result << "\n";
-    } else {
-        std::cerr << "Could not calculate sum or overflow detected.\n";
-    }
-    ```
-
-#### `bool array_has_pair_sum(const int *arr, size_t size, int target)`
-
-Checks if any *distinct* pair of elements in the array sums up to the target value.
-
--   **Parameters**:
-    -   `arr`: `const int*` - Pointer to the integer array.
-    -   `size`: `size_t` - Number of elements in the array.
-    -   `target`: `int` - The target sum value.
--   **Returns**:
-    -   `bool`: `true` if a pair `(arr[i], arr[j])` exists where `i != j` and `arr[i] + arr[j] == target`.
-    -   `bool`: `false` otherwise, or if `size < 2`, or if internal memory allocation for the hash table fails.
--   **Behavior**:
-    -   Uses an internal hash table to check for the complement (`target - x`) of each element `x`.
-    -   Handles duplicate numbers correctly.
--   **Implementation Details**: O(n) average time complexity, O(n) space complexity due to internal hash table.
--   **Dependencies**: `<cstddef>`, `<cstdlib>`, `<cmath>`, `<stdexcept>`, `<limits>`, `<iostream>`, `<stdbool.h>`
--   **Example**:
-    ```c++
-    int nums[] = {2, 7, 11, 15, 7};
-    bool found_9 = array_has_pair_sum(nums, 5, 9);
-    bool found_14 = array_has_pair_sum(nums, 5, 14);
-    std::cout << "Pair summing to 9 found: " << (found_9 ? "true" : "false") << "\n";
-    std::cout << "Pair summing to 14 found: " << (found_14 ? "true" : "false") << "\n";
-    ```
-
-#### `bool array_has_pair_product(const int *arr, size_t size, int target)`
-
-Checks if any *distinct* pair of elements in the array multiplies to the target value.
-
--   **Parameters**:
-    -   `arr`: `const int*` - Pointer to the integer array.
-    -   `size`: `size_t` - Number of elements in the array.
-    -   `target`: `int` - The target product value.
--   **Returns**:
-    -   `bool`: `true` if a pair `(arr[i], arr[j])` exists where `i != j` and `arr[i] * arr[j] == target`.
-    -   `bool`: `false` otherwise, or if `size < 2`, or if internal memory allocation for the hash table fails.
--   **Behavior**:
-    -   Uses an internal hash table.
-    -   Handles zero elements and duplicate numbers correctly.
--   **Implementation Details**: O(n) average time complexity, O(n) space complexity due to internal hash table. Includes checks for intermediate overflow.
--   **Dependencies**: `<cstddef>`, `<cstdlib>`, `<cmath>`, `<stdexcept>`, `<limits>`, `<iostream>`, `<stdbool.h>`
--   **Example**:
-    ```c++
-    int nums[] = {3, 5, -2, 8, 5};
-    bool found_neg_10 = array_has_pair_product(nums, 5, -10);
-    bool found_25 = array_has_pair_product(nums, 5, 25);
-    std::cout << "Pair with product -10 found: " << (found_neg_10 ? "true" : "false") << "\n";
-    std::cout << "Pair with product 25 found: " << (found_25 ? "true" : "false") << "\n";
-    ```
-
-#### `bool array_has_pair_difference(const int *arr, size_t size, int target)`
-
-Checks if any pair of elements (order matters, `a - b`) has a difference equal to the target value.
-
--   **Parameters**:
-    -   `arr`: `const int*` - Pointer to the integer array.
-    -   `size`: `size_t` - Number of elements in the array.
-    -   `target`: `int` - The target difference value (`arr[i] - arr[j] == target`).
--   **Returns**:
-    -   `bool`: `true` if a pair `(arr[i], arr[j])` exists where `arr[i] - arr[j] == target`.
-    -   `bool`: `false` otherwise, or if `size < 2`, or if internal memory allocation for the hash table fails.
--   **Behavior**:
-    -   Uses an internal hash table. Checks for both `x - target` and `x + target` as complements.
-    -   Handles duplicates correctly (e.g., `7 - 7 = 0` will be found if 7 appears at least twice).
--   **Implementation Details**: O(n) average time complexity, O(n) space complexity due to internal hash table. Includes checks for intermediate overflow.
--   **Dependencies**: `<cstddef>`, `<cstdlib>`, `<cmath>`, `<stdexcept>`, `<limits>`, `<iostream>`, `<stdbool.h>`
--   **Example**:
-    ```c++
-    int nums[] = {10, 7, 15, 5, 7};
-    bool found_3 = array_has_pair_difference(nums, 5, 3);
-    bool found_neg_5 = array_has_pair_difference(nums, 5, -5);
-    bool found_0 = array_has_pair_difference(nums, 5, 0);
-    std::cout << "Pair with difference 3 found: " << (found_3 ? "true" : "false") << "\n";
-    std::cout << "Pair with difference -5 found: " << (found_neg_5 ? "true" : "false") << "\n";
-    std::cout << "Pair with difference 0 found: " << (found_0 ? "true" : "false") << "\n";
-    ```
-
-#### `void sort_array(int arr[], size_t size)`
-
-Sorts an integer array in ascending order using Counting Sort (O(n+k) time complexity). Modifies the array in-place.
-
-- **Parameters**:
-  - `arr`: `int[]` : The integer array to sort.
-  - `size`: `size_t` : Number of elements in the array.
-
-- **Returns**: `void`
-- **Behavior**:
-  - Sorts the array `arr` in non-decreasing order.
-  - Optimized for non-negative integers. Prints a warning for negative values (they won't be sorted correctly by this specific implementation).
-  - Handles empty arrays or arrays with one element gracefully.
-  - Prints an error to `stderr` and returns if memory allocation for internal buffers fails or if the range of values is too large for `size_t`.
-- **Implementation Details**: Uses Counting Sort. Requires auxiliary space O(n + k) where k is the range of values.
-- **Dependencies**: `<cstddef>`, `<cstdlib>`, `<cstring>`, `<iostream>`, `<limits>`, `<cerrno>`
-- **Example**:
-```c++
-#include <iostream>
-#include "atomix.h"
-
-int main() {
-    int data[] = {5, 2, 8, 2, 1, 9, 4, 0};
-    size_t n = sizeof(data) / sizeof(data[0]);
-    std::cout << "Before sort: "; print_array(data, n);
-    sort_array(data, n);
-    std::cout << "After sort:  "; print_array(data, n);
-    return 0;
-}
-```
-
-#### `int find_string(char * const arr_of_strings[], size_t size, const char *target_string)`
-
-Finds the first occurrence of a specific C-style string within an array of C-style strings.
-
-- **Parameters**:
-  - `arr_of_strings`: `char * const []` : An array of C-style strings (pointers to characters).
-  - `size`: `size_t` : Number of elements (strings) in the array.
-  - `target_string`: `const char*` : The string to search for.
-- **Returns**:
-  - `int` : The index (0-based) of the first matching string if found.
-  - `int : -1` : if the string is not found, or if `arr_of_strings` or `target_string` is `nullptr`.
-- **Behavior**:
-  - Performs a linear search through the `arr_of_strings` array.
-  - Compares each non-`nullptr` string in the array with `target_string` using `strcmp`.
-- **Implementation Details**: O(n * m) time complexity, where n is array size and m is average string length. O(1) space.
-- **Dependencies**: `<cstddef>`, `<cstring>`
-- **Example**:
-```c++
-#include <iostream>
-#include "atomix.h"
-
-int main() {
-    const char* items[] = {"Apple", "Banana", "Cherry", "Apple"};
-    size_t n = sizeof(items) / sizeof(items[0]);
-    int index = find_string(const_cast<char* const*>(items), n, "Apple");
-    std::cout << "First 'Apple' found at index: " << index << "\n";
-
-    index = find_string(const_cast<char* const*>(items), n, "Durian");
-    std::cout << "'Durian' found at index: " << index << "\n";
-    return 0;
-}
-```
-
-#### `void print_array(const int arr[], size_t size)`
-
-Prints the elements of an integer array to standard output in a formatted way.
-
-- **Parameters**:
-  - `arr`: `const int[]` : The integer array to print. Can be `nullptr`.
-  - `size`: `size_t` : Number of elements in the array.
-- **Returns**: `void`
-- **Behavior**:
-  - Prints `nullptr` if `arr` is `nullptr`.
-  - Prints `[]` if `arr` is not `nullptr` but `size` is 0.
-  - Otherwise, prints elements enclosed in `[]`, separated by `, `.
-  - Prints a newline character `\n` at the end.
-- **Implementation Details**: O(n) time complexity. O(1) space complexity.
-- **Dependencies**: `<iostream>`, `<cstddef>`
-- **Example**:
-```c++
-#include <iostream>
-#include "atomix.h"
-
-int main() {
-    int values[] = {10, 20, 30};
-    print_array(values, 3);
-
-    int empty_arr[] = {};
-    print_array(empty_arr, 0);
-
-    print_array(nullptr, 5);
-
-    return 0;
-}
-```
+---
 
 <div align="center">
 
@@ -715,108 +578,146 @@ int main() {
 
 </div>
 
-The library uses a layered approach for input and optimized algorithms for array operations:
 
-1.  **Input Foundation:** `get_string` forms the base, providing robust line reading into `std::string` using `std::getline`.
-2.  **Input Validation:** All other `get_*` functions utilize `get_string` internally, followed by specific parsing and validation logic using C++ standard library features:
-    *   `get_char` validates line length.
-    *   `get_int`, `get_long`, `get_float`, `get_double` use `std::st*` functions (`std::stol`, `std::stof`, `std::stod`) for parsing, handling `std::invalid_argument` and `std::out_of_range` exceptions, checking for trailing characters and numeric ranges.
-3.  **Array Operations:**
-    *   `array_max`, `array_min`, `array_sum`, `find_string`, `print_array` perform simple O(n) traversals.
-    *   `array_has_pair_sum`, `array_has_pair_product`, `array_has_pair_difference` use an **internal hash table** (implemented with dynamic C memory allocation `malloc`/`calloc`) to achieve O(n) average time complexity for checking pair conditions, requiring O(n) auxiliary space.
-    *   `sort_array` uses the **Counting Sort** algorithm for O(n+k) time complexity (where k is the range of values) for sorting non-negative integers, requiring O(n+k) auxiliary space (implemented with dynamic C memory allocation).
+
+Atomix leverages the C++ Standard Library extensively for robustness and efficiency:
+
+1.  **Input Foundation:** `get_string` uses `std::getline`. Other `get_*` functions build upon `get_string`, using `std::sto*` functions (`stol`, `stoll`, `stof`, `stod`, `stold`) for parsing, handling exceptions (`std::invalid_argument`, `std::out_of_range`), and performing additional checks (trailing chars, numeric ranges). Retry loops handle invalid input.
+2.  **Integer Array Pair Checks:** The `array_has_pair_*` functions use an internal C-style hash table (implemented with linked lists for collision resolution via `malloc`/`free`) to achieve O(n) average time complexity.
+3.  **Sorting:** `sort_array` (for `int[]`) and `array_sort_<type>` (for `std::vector`) use `std::sort`, offering efficient (typically O(n log n)) and general-purpose sorting suitable for various data distributions.
+4.  **Vector Operations:** Functions operating on `std::vector` heavily utilize standard library components:
+    *   `<algorithm>`: `std::find`, `std::count`, `std::max_element`, `std::min_element`, `std::reverse`, `std::shuffle`, `std::copy`, `std::all_of`, `std::replace`, `std::transform`.
+    *   `<numeric>`: `std::accumulate` for sums.
+    *   RAII: `std::vector` manages its own memory, simplifying copy and concatenation logic.
+5.  **String Manipulation:** Functions utilize `std::string` methods and algorithms from `<algorithm>`, `<sstream>`, `<cctype>`.
+6.  **Random Numbers:** Employs the `<random>` library, specifically `std::mt19937` (Mersenne Twister) seeded by `std::random_device` for better randomness compared to `rand()`.
+7.  **Timing:** Uses the `<chrono>` library's `std::chrono::high_resolution_clock` for potentially the most precise timing available on the platform.
 
 ## 📋 Best Practices
 
-When using the Atomix library, keep the following best practices in mind:
 
-1.  **Check `std::string::empty()` and `std::cin` state** when using `get_string`:
+
+1.  **Check `std::cin` State:** When using input functions (`get_string`, `get_int`, etc.), if the default return value on error (e.g., `0` for `get_int`, empty string for `get_string`) is potentially valid input, check `std::cin.eof()` or `std::cin.fail()` afterwards to distinguish between valid input and a stream error/EOF condition.
     ```c++
-    std::string input = get_string("Enter text: ");
-    if (input.empty() && (std::cin.eof() || std::cin.fail())) {
-        std::cerr << "Error reading input or EOF.\n";
-    }
+    std::string input = get_string("Enter text (or press Ctrl+D): ");
+    if (input.empty() && std::cin.eof()) { /* Handle EOF */ }
+    // ...
     ```
-
-2.  **Check boolean return values** for `array_max`, `array_min`, `array_sum`, and `array_has_pair_*` before using the output pointer (for max/min/sum) or relying on the pair check result:
+2.  **Check Boolean Return Values:** Always check the `bool` return value of functions like `array_max`, `array_min`, `array_sum`, `array_average`, `string_to_float`, etc., before using the value stored in the output pointer. A `false` return indicates failure.
     ```c++
-    int arr[] = {1, 2, 3};
-    int max_val;
-    if (array_max(arr, 3, &max_val)) {
-        std::cout << "Max is " << max_val << "\n";
-    } else {
-        std::cerr << "Failed to find maximum.\n";
-    }
+    double avg;
+    if (array_average_float(my_vector, &avg)) { /* Use avg */ }
+    // ...
     ```
-
-3.  **Be aware of the limitations** of `sort_array` which is optimized for non-negative integers and has memory considerations related to the range of values.
-
-4.  **Consider range limitations** of the various numeric types (`int`, `long`, `float`, `double`) when choosing which `get_*` function to use.
-
-5.  **Use appropriate prompts** to guide users clearly.
+3.  **Prefer `std::vector`:** Whenever possible, use `std::vector` and the corresponding Atomix vector utilities (`array_*_<type>`). `std::vector` handles memory management automatically (RAII).
+4.  **Manage C-Style Array Memory:** If you use C-style array functions that return dynamically allocated memory (`array_copy_int`, `array_unique_int`, `array_concat_int`), **always** free the memory using `delete[]` when done.
+    ```c++
+    int* unique_data = array_unique_int(source_array, source_size, &unique_size);
+    if (unique_data) { /* ... use unique_data ... */ delete[] unique_data; }
+    ```
+5.  **Floating-Point Comparisons:** Use an appropriate `epsilon` value when calling functions that compare floats or doubles.
+6.  **Use Clear Prompts:** Provide informative prompts to the user when calling input functions.
 
 ## 🔍 Error Handling
 
-Atomix handles most standard input errors internally by prompting the user to retry. For `get_string`, `get_char`, `get_int`, `get_long`, `get_float`, `get_double`, if a fundamental stream error (like EOF or a persistent failure) occurs, they print an error message to `std::cerr` and return a default/empty value (`""`, `'\0'`, `0`, `0L`, `0.0f`, `0.0`). Your calling code should ideally check the return value (for `get_string`) or the state of `std::cin` if default return values are ambiguous for your use case.
 
-For array functions:
 
-1.  **Invalid arguments** (e.g., `nullptr` array pointer with `size > 0`, `nullptr` output pointers) are checked and typically result in a `false` return value.
-2.  **Internal memory allocation failure** within hash table or sorting functions (`malloc`/`calloc` returning `nullptr`) is checked. An error message is printed to `stderr` and the function returns `false` (for pair checks) or `void` after printing an error (for sort).
-3.  **Potential numeric overflow** is checked in `array_sum` and `sort_array`, resulting in warnings or errors printed to `stderr` and potentially a `false` return value for `array_sum`.
+*   **Input Function Retries:** Invalid format, out-of-range values, or empty input (for `get_string_non_empty`) typically trigger a retry prompt.
+*   **Input Function Failures:** Fundamental stream errors (`std::cin.eof()`, `std::cin.fail()`) print an error message to `std::cerr`, and a default value is returned.
+*   **Invalid Function Arguments:** Passing `nullptr` where a valid pointer is expected or invalid sizes usually results in the function returning `false` or performing no operation.
+*   **Memory Allocation Failures:** Failures in `new` or C-style `malloc`/`calloc` print errors to `stderr` (via `perror` or `std::cerr`) and return `false`, `nullptr`, or perform no operation. `new` might throw `std::bad_alloc` if not using `nothrow`.
+*   **Numeric Overflows:** Input functions check against type limits. `array_sum` for `int[]` checks for `long long` overflow.
 
 ## 📦 Dependencies
 
-Atomix relies only on standard C++ and C libraries:
 
--   `<iostream>`: For C++ input/output operations (`std::cout`, `std::cin`, `std::cerr`, `std::getline`).
--   `<string>`: For `std::string`.
--   `<cstdlib>`: For C memory allocation (`malloc`, `calloc`, `free`) and `std::llabs`.
--   `<cstring>`: For C string operations (`std::strcmp`, `std::memcpy`).
--   `<cctype>`: For character classification (`std::isspace`).
--   `<cmath>`: For `std::llabs` (needed for hash function).
--   `<cerrno>`: For `errno` (used by `strto*` functions, though not explicitly checked for `ERANGE` in your code's catch blocks, `std::out_of_range` covers it).
--   `<stdexcept>`: For `std::invalid_argument` and `std::out_of_range` exceptions from `std::st*` functions.
--   `<limits>`: For `std::numeric_limits`.
--   `<cstddef>`: For `size_t` and `nullptr`.
--   `<stdbool.h>`: For `bool`, `true`, `false` types.
--   `<stdint.h>`: For `SIZE_MAX` (mentioned in Aquant v1.2.0 README, though not explicitly used in the provided C++ code).
+
+Atomix requires a C++ compiler that supports the **C++11 standard** or later. It relies only on the C++ Standard Library headers:
+
+*   **Core:** `<iostream>`, `<string>`, `<vector>`, `<limits>`, `<stdexcept>`, `<cstddef>`, `<cstdlib>`, `<cstring>`, `<cmath>`, `<cctype>`
+*   **Algorithms & Numerics:** `<algorithm>`, `<numeric>`
+*   **Utilities:** `<random>`, `<chrono>`, `<set>`, `<sstream>`
+*   **Error Handling/Low-level:** `<cstdio>` (for `perror`), `<cerrno>`, `<new>` (for `std::nothrow`)
+
+No external third-party libraries are required.
 
 ## 🔄 Version History
 
+
+
+### Version 1.2.0
+
+*   **Added `std::vector` Support:** Introduced comprehensive functions for `std::vector<int>`, `float`, `double`, `std::string`.
+*   **Enhanced Sorting:** Switched C-style array sort to `std::sort`. Vector sort also uses `std::sort`.
+*   **Added String Manipulation:** Included a large suite of `std::string` processing functions.
+*   **Added Random Utilities:** Introduced functions using `<random>`.
+*   **Added Timer Utilities:** Introduced functions using `<chrono>`.
+*   **Added Float/Double Comparison Helpers:** Added `floats_are_close` and `doubles_are_close`.
+*   **Added Input Validation:** Implemented `get_int_range` and `get_string_non_empty`.
+*   **Refactored Internals:** Increased use of standard library algorithms.
+*   **Added Memory Helpers:** Included `free_string`, `free_string_array`, and C-style array copy/unique/concat functions requiring `delete[]`.
+*   **Dependencies Updated:** Requires C++11, added new standard headers.
+
 ### Version 1.0.0 [Initial Release]
 
--   Complete implementation of core C++ `get_*` input functions (`get_string`, `get_char`, `get_int`, `get_long`, `get_float`, `get_double`) built on `std::string` and C++ streams.
--   Input validation and retry logic using C++ exceptions and stream state.
--   **Added C++ Equivalents:** Implemented `array_max`, `array_min`, `array_sum`, `array_has_pair_sum`, `array_has_pair_product`, `array_has_pair_difference` functions in C++.
--   **Optimized Pair Check Functions:** Implemented `array_has_pair_sum`, `array_has_pair_product`, `array_has_pair_difference` using an internal hash table (using C-style memory allocation) for O(n) average time complexity.
--   Added `<cstdlib>`, `<cmath>`, `<stdbool.h>`, `<limits>`, `<stdexcept>`, `<iostream>` dependencies.
--   Improved input function robustness slightly.
-
--   **Added C++ Equivalents:** Implemented `sort_array`, `find_string`, and `print_array` functions in C++.
--   `sort_array`: Uses Counting Sort for integer arrays (O(n+k)). Optimized for non-negative integers.
--   `find_string`: Linear search for C-style strings in a `char* const []` array.
--   `print_array`: Formatted printing for integer arrays.
--   Added checks for memory allocation failures and range issues in `sort_array`.
--   Added `<cstring>`, `<cmath>`, `<limits>`, `<cerrno>`, `<stdexcept>`, `<iostream>` dependencies explicitly for relevant functions.
+*   Core C++ `get_*` input functions.
+*   Input validation and retry logic.
+*   C-style integer array utilities: `array_max`, `min`, `sum`.
+*   Optimized C-style integer array pair check functions (`sum`, `product`, `difference`) using hash table.
+*   Initial `sort_array` using Counting Sort.
+*   `find_string` for C-style `char*[]`.
+*   `print_array` for C-style integer arrays.
 
 ## 📝 License
 
-Atomix is based on MIT license and thus protected by said License.
+
+Atomix is released under the MIT License. See the LICENSE file for details.
+
+```
+MIT License
+
+Copyright (c) 2025 Aayush Badola
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/AayushBadola/Atomix/issues).
+
+1.  Fork the Project Repository.
+2.  Create your Feature Branch (`git checkout -b feature/YourAmazingFeature`).
+3.  Commit your Changes (`git commit -m 'Add YourAmazingFeature'`).
+4.  Push to the Branch (`git push origin feature/YourAmazingFeature`).
+5.  Open a Pull Request.
 
 ## 📞 Contact
 
+
+
 Aayush Badola
+
+*   **GitHub:** [github.com/AayushBadola](https://github.com/AayushBadola)
+*   **LinkedIn:** [linkedin.com/in/aayush-badola-0a7b2b343](https://www.linkedin.com/in/aayush-badola-0a7b2b343)
+*   **Email:** [aayush.badola2@gmail.com](mailto:aayush.badola2@gmail.com)
 
 <div align="center">
   <a href="https://github.com/AayushBadola">
@@ -833,6 +734,10 @@ Aayush Badola
 ---
 
 <div align="center">
+
+Made with ❤️ and C++ by [Aayush Badola](https://github.com/AayushBadola)
+
+</div>
 
 Made with ❤️ by [Aayush Badola](https://github.com/AayushBadola)
 
