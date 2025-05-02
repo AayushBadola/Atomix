@@ -739,9 +739,5 @@ Made with ❤️ and C++ by [Aayush Badola](https://github.com/AayushBadola)
 
 </div>
 
-Made with ❤️ by [Aayush Badola](https://github.com/AayushBadola)
-
-</div>
-
 
 
